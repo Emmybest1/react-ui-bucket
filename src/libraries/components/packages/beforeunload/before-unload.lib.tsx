@@ -1,13 +1,9 @@
 import React from 'react';
 
-type PropTypes = {
-  shouldPromptBeforeunload: boolean;
-};
-
-export const useBeforeUnload: React.FC<PropTypes> = ({shouldPromptBeforeunload}): null => {
+export const useBeforeunload = (shouldPromptBeforeunload: boolean): void => {
   React.useEffect(() => {
     const beforeunloadListener = (ev: BeforeUnloadEvent) => {
-      if (shouldPromptBeforeunload) {
+      if (!shouldPromptBeforeunload) {
         delete ev.returnValue;
       } else {
         ev.returnValue = 'Your unsaved data will be lost.';
@@ -20,11 +16,10 @@ export const useBeforeUnload: React.FC<PropTypes> = ({shouldPromptBeforeunload})
       window.removeEventListener('beforeunload', beforeunloadListener);
     };
   });
-  return null;
 };
 
 export const Beforeunload = (shouldPromptBeforeunload: boolean) =>
-  class Beforeunload extends React.Component<PropTypes, null> {
+  class Beforeunload extends React.Component {
     beforeunloadListener = (ev: BeforeUnloadEvent) => {
       if (shouldPromptBeforeunload) {
         delete ev.returnValue;

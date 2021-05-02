@@ -25,7 +25,7 @@ export {_localStorage} from './libraries/utils/local-storage/localStorage.lib';
 /*
  * hooks packages
  */
-export {useBeforeUnload} from './libraries/hooks/use-beforeunload/use-beforeunload.lib';
+export {useBeforeunload} from './libraries/hooks/use-beforeunload/use-beforeunload.lib';
 export {useLocalStorage} from './libraries/hooks/use-localstorage/use-localstorage.lib';
 
 /*
