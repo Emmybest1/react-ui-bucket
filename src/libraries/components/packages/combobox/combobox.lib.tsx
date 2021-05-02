@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {useUniqueIds} from '../../../../hooks/useUniqueIds';
+
 import Input from '../../partials/input/input.component';
+import {useUniqueIds} from '../../../../hooks/useUniqueIds';
 import {IComboboxItem} from '../../../../react-app-env';
+
 import './combobox.style.scss';
 
 export type TComboboxProps = {

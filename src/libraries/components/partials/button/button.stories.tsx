@@ -1,6 +1,7 @@
 import React from 'react';
 import {Story, Meta} from '@storybook/react/types-6-0';
-import {Button, TButtonProps, ButtonClassName} from './button.component';
+
+import {Button, IPropTypes, ButtonClassName} from './button.component';
 import {storiesHierarchy as h} from '../../../../react-ui-bucket';
 
 export default {
@@ -13,22 +14,22 @@ export default {
   },
 } as Meta;
 
-const ButtonTemplate: Story<TButtonProps> = (args: TButtonProps) => <Button {...args} />;
+const ButtonTemplate: Story<IPropTypes> = (args: IPropTypes) => <Button {...args} />;
 
 export const SuccessButton = ButtonTemplate.bind({});
 SuccessButton.args = {
-  buttonText: 'Success',
+  /*   buttonText: 'Success', */
   className: ButtonClassName.success,
 };
 
 export const DangerButton = ButtonTemplate.bind({});
 DangerButton.args = {
-  buttonText: 'Danger',
+  /*   buttonText: 'Danger', */
   className: ButtonClassName.danger,
 };
 
 export const WarningButton = ButtonTemplate.bind({});
 WarningButton.args = {
-  buttonText: 'Warning',
+  /*  buttonText: 'Warning', */
   className: ButtonClassName.warning,
 };

@@ -24,14 +24,10 @@ export const ButtonSearchBar: React.FC<TButtonSearchBarProps> = ({
   return (
     <span className="btn-search-bar-container">
       <Input id={id} type="search" name={name} placeholder={placeholder} className="search-bar" {...otherProps} />
-      <Button
-        buttonText="Search"
-        className="search-btn"
-        type="submit"
-        onClick={onClick}
-        toolTip={toolTip}
-        toolTipHint={toolTipHint}
-      />
+
+      <Button className="search-btn" type="submit" onClick={onClick} toolTip={toolTip} toolTipHint={toolTipHint}>
+        Search
+      </Button>
     </span>
   );
 };

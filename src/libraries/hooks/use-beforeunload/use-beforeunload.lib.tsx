@@ -1,1 +1,1 @@
-export {useBeforeUnload} from '../../components/packages/before-unload/before-unload.lib';
+export {useBeforeUnload} from '../../components/packages/beforeunload/before-unload.lib';

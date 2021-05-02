@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {Button} from '../../partials/button/button.component';
-import ReactPortal from '../../partials/react-portal/react-portal.component';
+
+import {Button, ReactPortal} from '../../../../react-ui-bucket';
 import {IAPIEngineProps} from '../../../../react-app-env';
+
 import '../../../../sass/_api-engine.scss';
 
 export const ApiSuccessEngine: React.FC<IAPIEngineProps> = ({
@@ -10,31 +11,27 @@ export const ApiSuccessEngine: React.FC<IAPIEngineProps> = ({
   modalPosition,
   shouldShowModal,
 }): JSX.Element => {
-  const [showModal, setShowModal] = useState<boolean>(() => shouldShowModal ?? false);
+  const [showModal, setShowModal] = useState<boolean>(shouldShowModal);
+
   return (
     <>
       {showModal && (
         <ReactPortal>
           <div
-            className={`api-engine-container api-success-engine-container  modal-${
-              modalPosition ? modalPosition : 'top'
-            }`}
+            className={`api-engine-container api-success-engine-container  modal-${modalPosition || 'top'}`}
             role="alert"
             aria-live="assertive"
             aria-labelledby="apiSuccHeading"
           >
             <h4 id="apiSuccHeading" className="api-heading pb-20">
-              {heading ? heading : 'API Error'}
+              {heading || 'API Error'}
             </h4>
             <span className="row pb-20">
               <p className="api-symbol">✔️</p>
               <p className="api-message pl-20">{message}</p>
             </span>
             <div className="btn-wrapper">
-              <Button
-                buttonText="Close"
-                onClick={(event: React.MouseEvent<HTMLButtonElement>) => setShowModal(false)}
-              />
+              <Button onClick={() => setShowModal(false)}>Close</Button>
             </div>
           </div>
         </ReactPortal>

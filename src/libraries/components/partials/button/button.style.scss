@@ -40,7 +40,7 @@ button {
   color: #fff;
 }
 
-.btn-tooltip {
+.tooltip {
   background-color: #000;
   border: solid 1px #eee;
   color: #fff;
@@ -52,18 +52,15 @@ button {
   width: 100%;
 }
 
-/****************************
- *@styling button structures
- ****************************/
-[data-btn-structure='border'] {
+[data-structure='border'] {
   border: solid 3px #eee;
 }
 
-[data-btn-structure='curved'] {
+[data-structure='curved'] {
   border-radius: 5px;
 }
 
-[data-btn-structure='curved-border'] {
+[data-structure='curved-border'] {
   border: solid 3px #eee;
   border-radius: 5px;
 }

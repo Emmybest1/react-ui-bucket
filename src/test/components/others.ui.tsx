@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+
 import TestViews from '../baseview/base-view';
 import Button from '../../libraries/components/partials/button/button.component';
 import {Accordion} from '../../react-ui-bucket';
@@ -47,7 +48,6 @@ export const Others: React.FC = (): JSX.Element => {
               <>{randomText}</>
               <div>
                 <Button
-                  buttonText="Save"
                   className="success"
                   onClick={() => {
                     _localStorage.set(
@@ -58,15 +58,19 @@ export const Others: React.FC = (): JSX.Element => {
                     );
                     window.location.reload();
                   }}
-                />
+                >
+                  Save
+                </Button>
+
                 <Button
-                  buttonText="Clear"
                   className="danger"
                   onClick={() => {
                     window.localStorage.removeItem('randomText');
                     window.location.reload();
                   }}
-                />
+                >
+                  Clear
+                </Button>
               </div>
             </section>
 

@@ -1,12 +1,6 @@
 import React from 'react';
 import './button.style.scss';
 
-enum ButtonTypes {
-  button = 'button',
-  submit = 'submit',
-  reset = 'reset',
-}
-
 export enum ButtonClassName {
   danger = 'danger',
   warning = 'warning',
@@ -19,34 +13,24 @@ export enum ButtionStructures {
   curvedBorder = 'curved-border',
 }
 
-export type TButtonProps = {
-  buttonText: string;
-  buttonType?: ButtonTypes.button | ButtonTypes.submit | ButtonTypes.reset;
-  buttonDisable?: boolean;
-  buttonIcon?: React.ReactElement;
+export interface IPropTypes extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   buttonStructure?: ButtionStructures.border | ButtionStructures.curved | ButtionStructures.curvedBorder | string;
   className?: ButtonClassName.danger | ButtonClassName.warning | ButtonClassName.success | string;
-  children?: React.ReactNode;
+  children: React.ReactNode;
   toolTip?: boolean;
   toolTipHint?: string;
-  [x: string]: any;
-};
+}
 
-export const Button: React.FC<TButtonProps> = ({
-  buttonText,
-  buttonType,
-  buttonDisable,
-  buttonIcon,
+export const Button: React.FC<IPropTypes> = ({
   buttonStructure,
   className,
   children,
   toolTip,
   toolTipHint,
-  ...otherProps
 }): JSX.Element => {
   const [toolTipShown, setToolTipShown] = React.useState<boolean>(false);
+
   const mouseEnterHandler = (ev: React.MouseEvent<HTMLButtonElement>): void => {
-    ev.stopPropagation();
     if (toolTip) {
       setTimeout(() => {
         setToolTipShown(true);
@@ -55,7 +39,7 @@ export const Button: React.FC<TButtonProps> = ({
     return;
   };
 
-  const mouseLeaveHandler = (): void => {
+  const onMouseLeaveHandler = (): void => {
     if (toolTipShown) {
       setToolTipShown(false);
     }
@@ -70,17 +54,12 @@ export const Button: React.FC<TButtonProps> = ({
         </span>
       )}
       <button
-        type={buttonType ? buttonType : 'button'}
-        disabled={buttonDisable}
+        type="button"
         className={`react-ui-button ${className}`}
         onMouseEnter={mouseEnterHandler}
-        onMouseLeave={mouseLeaveHandler}
-        data-btn-structure={buttonStructure}
-        {...otherProps}
+        onMouseLeave={onMouseLeaveHandler}
+        data-structure={buttonStructure}
       >
-        {buttonText}
-        {``}
-        {buttonIcon && <span>{buttonIcon}</span>}
         {children}
       </button>
     </>

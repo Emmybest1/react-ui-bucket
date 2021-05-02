@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
+
 import {ReactPortal} from '../../partials/react-portal/react-portal.component';
 import {ModalPosition} from '../../../../react-app-env';
+
 import './internet-alert.style.scss';
 
 type TInternetAlertProps = {
@@ -24,35 +26,27 @@ export const InternetAlert: React.FC<TInternetAlertProps> = ({
   const [isInternetDisconnected, setIsInternetDisconnected] = useState<boolean>(false);
   const [shouldCloseAlert, setShouldCloseAlert] = useState<boolean>(false);
 
-  /***************************************************************************************************
-   * @interinternetDisconnectedHandler : this event handler gets invoke when an internet is disconnect
-   * @reference : checkout the stories for more details
-   ***************************************************************************************************/
-  const internetDisconnectedHandler: () => void = (): void => {
-    setIsInternetDisconnected(true);
-  };
-
   useEffect(() => {
-    window.addEventListener('offline', internetDisconnectedHandler);
+    const offlineListener = (): void => {
+      setIsInternetDisconnected(true);
+    };
+
+    window.addEventListener('offline', offlineListener);
 
     return () => {
-      window.removeEventListener('offline', internetDisconnectedHandler);
+      window.removeEventListener('offline', offlineListener);
     };
   });
 
-  /************************************************************************************************
-   * @interinternetConnectedHandler : this event handler gets invoke when an internet is connected
-   * @reference : checkout the stories for more details
-   ************************************************************************************************/
-  const internetConnectedHandler: () => void = (): void => {
-    setIsInternetDisconnected(false);
-  };
-
   useEffect(() => {
-    window.addEventListener('online', internetConnectedHandler);
+    const onlineListener = (): void => {
+      setIsInternetDisconnected(false);
+    };
+
+    window.addEventListener('online', onlineListener);
 
     return () => {
-      window.removeEventListener('online', internetConnectedHandler);
+      window.removeEventListener('online', onlineListener);
     };
   });
 
@@ -84,12 +78,12 @@ export const InternetAlert: React.FC<TInternetAlertProps> = ({
                 https://www.flaticon.com/free-icon/lock_3983101?term=internet%20connection&page=1&position=78&related_item_id=3983101
               </figcaption>
             </figure>
-            <h3 data-test="internet-failure-heading">{headingText ? headingText : 'Internet Failure!'}</h3>
+            <h3 data-test="internet-failure-heading">{headingText || 'Internet Failure!'}</h3>
             <p data-test="internet-failure-body-text">
-              {bodyText ? bodyText : "Sorry we can't continue, you seems to have gone offline.Try reconnecting."}
+              {bodyText || "Sorry we can't continue, you seems to have gone offline.Try reconnecting."}
             </p>
             <button data-test="close-button" onClick={() => setShouldCloseAlert(true)}>
-              {buttonText ? buttonText : 'Close'}
+              {buttonText || 'Close'}
             </button>
           </div>
         )}
